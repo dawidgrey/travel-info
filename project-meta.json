@@ -1,0 +1,19 @@
+{
+  "name": "Travel Info",
+  "slug": "travel-info",
+  "type": "website",
+  "channel": {
+    "guild_id": "1499565320732676248",
+    "channel_id": "1520771553766408274",
+    "name": "travel-info",
+    "category_id": "1499602084629319771"
+  },
+  "hosting": "GitHub Pages",
+  "stack": "Vite static site",
+  "data_sources": [
+    "open.er-api.com",
+    "open-meteo.com"
+  ],
+  "design_profile": "LACB Grey Blueprint/Signal baseline",
+  "created_by": "Hermes Agent"
+}
