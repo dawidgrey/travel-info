@@ -105,7 +105,8 @@ input:focus, select:focus { outline: 1px solid var(--accent); outline-offset: 0;
 .conversion-results span { color: var(--accent); font-size: 11px; letter-spacing: .2em; }
 .conversion-results strong { font-size: clamp(18px, 2.2vw, 26px); font-weight: 500; }
 
-.rate-grid, .forecast-grid, .notes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 24px; }
+.rate-grid, .forecast-grid, .notes-grid, .time-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 24px; }
+.time-grid { grid-template-columns: repeat(2, 1fr); }
 .rate-card, .forecast-card, .notes-grid .card { padding: 28px; }
 .rate-card strong { display: block; margin-top: 12px; font-size: 20px; font-weight: 400; line-height: 1.4; }
 .data-note { margin-top: 18px; font-size: 12px; }
@@ -114,6 +115,16 @@ input:focus, select:focus { outline: 1px solid var(--accent); outline-offset: 0;
 .weather-card strong { display: block; font-size: clamp(56px, 8vw, 96px); line-height: 1; font-weight: 500; }
 .weather-card > span:not(.label) { color: var(--fg-2); }
 .weather-meta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; color: var(--fg-3); font-size: 12px; }
+
+.time-difference { padding: 32px; }
+.time-difference strong { display: block; margin-top: 12px; font-size: clamp(26px, 4vw, 48px); line-height: 1.1; font-weight: 500; letter-spacing: -.05em; }
+.time-difference p { margin: 16px 0 0; }
+.time-card { padding: 32px; min-height: 270px; }
+.time-card-top { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
+.time-card h3 { margin: 46px 0 0; font-size: clamp(28px, 4vw, 48px); line-height: 1; font-weight: 500; letter-spacing: -.05em; }
+time { display: block; margin-top: 26px; font-size: clamp(40px, 7vw, 72px); line-height: .95; font-weight: 500; letter-spacing: -.07em; }
+.time-card p { margin: 18px 0 0; }
+
 .forecast-card strong { display: block; margin: 12px 0; font-size: 24px; font-weight: 500; }
 .forecast-card p { min-height: 54px; margin: 0 0 12px; }
 
@@ -123,7 +134,7 @@ input:focus, select:focus { outline: 1px solid var(--accent); outline-offset: 0;
   .site-header { align-items: flex-start; flex-direction: column; padding: 18px 22px; }
   nav { flex-wrap: wrap; }
   .section { padding: 64px 22px; }
-  .hero-grid, .weather-layout, .converter, .rate-grid, .forecast-grid, .notes-grid { grid-template-columns: 1fr; }
+  .hero-grid, .weather-layout, .converter, .rate-grid, .forecast-grid, .notes-grid, .time-grid { grid-template-columns: 1fr; }
   .conversion-results { grid-template-columns: 1fr; }
   h1 { font-size: clamp(42px, 14vw, 68px); }
 }

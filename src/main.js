@@ -24,6 +24,7 @@ app.innerHTML = `
       <span>Travel info / Istanbul</span>
     </a>
     <nav aria-label="Page sections">
+      <a href="#time">Time</a>
       <a href="#currency">Currency</a>
       <a href="#weather">Weather</a>
       <a href="#notes">Notes</a>
@@ -45,9 +46,39 @@ app.innerHTML = `
         <aside class="status-panel" aria-label="Quick status">
           <div class="panel-row"><span>Route</span><strong>Australia → Istanbul</strong></div>
           <div class="panel-row"><span>Currency</span><strong>AUD / EUR / TRY</strong></div>
+          <div class="panel-row"><span>Time difference</span><strong id="heroTimeDiff">Brisbane +7h</strong></div>
           <div class="panel-row"><span>Weather</span><strong id="heroWeather">Loading</strong></div>
           <div class="panel-row"><span>Updated</span><strong id="updatedAt">Awaiting data</strong></div>
         </aside>
+      </div>
+    </section>
+
+    <section id="time" class="section">
+      <div class="inner">
+        <div class="section-head">
+          <p class="eyebrow">Time bridge</p>
+          <h2>Brisbane and Istanbul local times.</h2>
+          <p>Brisbane operates on UTC+10 and Istanbul operates on UTC+3. Brisbane is currently 7 hours ahead of Istanbul.</p>
+        </div>
+        <div class="time-difference card" aria-live="polite">
+          <span class="label">Current difference</span>
+          <strong id="timeDifference">Brisbane is 7 hours ahead of Istanbul</strong>
+          <p>Use this for calls, airport pickups, check-ins, and avoiding the classic 3am message ambush.</p>
+        </div>
+        <div class="time-grid" aria-label="Current local times">
+          <article class="time-card card">
+            <div class="time-card-top"><span class="label">Home base</span><small>UTC+10</small></div>
+            <h3>Brisbane</h3>
+            <time id="brisbaneTime" datetime="">--:--:--</time>
+            <p id="brisbaneDate">Loading Brisbane date</p>
+          </article>
+          <article class="time-card card">
+            <div class="time-card-top"><span class="label">Destination</span><small>UTC+3</small></div>
+            <h3>Istanbul</h3>
+            <time id="istanbulTime" datetime="">--:--:--</time>
+            <p id="istanbulDate">Loading Istanbul date</p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -124,6 +155,43 @@ app.innerHTML = `
     <div class="inner">Static GitHub Pages site. Live data loads in the browser from public APIs.</div>
   </footer>
 `;
+
+const zones = {
+  brisbane: 'Australia/Brisbane',
+  istanbul: 'Europe/Istanbul',
+};
+
+function formatTime(date, timeZone) {
+  return new Intl.DateTimeFormat('en-AU', {
+    timeZone,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+  }).format(date);
+}
+
+function formatDate(date, timeZone) {
+  return new Intl.DateTimeFormat('en-AU', {
+    timeZone,
+    weekday: 'long',
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  }).format(date);
+}
+
+function updateTimes() {
+  const now = new Date();
+  document.querySelector('#brisbaneTime').textContent = formatTime(now, zones.brisbane);
+  document.querySelector('#brisbaneTime').dateTime = now.toISOString();
+  document.querySelector('#brisbaneDate').textContent = formatDate(now, zones.brisbane);
+  document.querySelector('#istanbulTime').textContent = formatTime(now, zones.istanbul);
+  document.querySelector('#istanbulTime').dateTime = now.toISOString();
+  document.querySelector('#istanbulDate').textContent = formatDate(now, zones.istanbul);
+  document.querySelector('#timeDifference').textContent = 'Brisbane is 7 hours ahead of Istanbul';
+  document.querySelector('#heroTimeDiff').textContent = 'Brisbane +7h';
+}
 
 const amountInput = document.querySelector('#amount');
 const fromSelect = document.querySelector('#fromCurrency');
@@ -233,5 +301,7 @@ amountInput.addEventListener('input', updateConversions);
 fromSelect.addEventListener('change', updateConversions);
 renderRateGrid();
 updateConversions();
+updateTimes();
+setInterval(updateTimes, 1000);
 loadCurrency();
 loadWeather();
