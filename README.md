@@ -1,5 +1,7 @@
 # Travel Info — Istanbul for Australians
 
+> **Archived:** This project is no longer actively maintained. The published GitHub Pages site remains available at https://dawidgrey.github.io/travel-info/.
+
 Static GitHub Pages-ready website for travellers flying from Australia to Istanbul.
 
 ## Features
